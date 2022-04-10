@@ -1,0 +1,627 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta property="og:image" content="https://wearebadmofos.com/images/Messagebanner.png" />
+    <meta name="description" content="Anonymous gives you a tool that allows you to send tweets from your phones that tag randomly selected public personas.">
+    <title>AnonWebTwitterBlaster</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <style>
+
+        @keyframes scroll {
+            0% {
+                height: 0
+            }
+
+            100% {
+                height: 100%;
+            }
+        }
+
+        @keyframes type {
+            from {
+                width: 0;
+            }
+        }
+
+        @keyframes type2 {
+            0% {
+                width: 0;
+            }
+
+            50% {
+                width: 0;
+            }
+
+            100% {
+                width: 100;
+            }
+        }
+
+        @keyframes blink {
+            to {
+                opacity: .0;
+            }
+        }
+
+        @keyframes scan {
+            from {
+                top: 0
+            }
+
+            to {
+                top: 100%
+            }
+        }
+
+        @keyframes flicker {
+            0% {
+                opacity: 0.15795
+            }
+
+            5% {
+                opacity: 0.31511
+            }
+
+            10% {
+                opacity: 0.94554
+            }
+
+            15% {
+                opacity: 0.2469
+            }
+
+            20% {
+                opacity: 0.62031
+            }
+
+            25% {
+                opacity: 0.0293
+            }
+
+            30% {
+                opacity: 0.00899
+            }
+
+            35% {
+                opacity: 0.5344
+            }
+
+            40% {
+                opacity: 0.12778
+            }
+
+            45% {
+                opacity: 0.52042
+            }
+
+            50% {
+                opacity: 0.3823
+            }
+
+            55% {
+                opacity: 0.2198
+            }
+
+            60% {
+                opacity: 0.9383
+            }
+
+            65% {
+                opacity: 0.86615
+            }
+
+            70% {
+                opacity: 0.68695
+            }
+
+            75% {
+                opacity: 0.55749
+            }
+
+            80% {
+                opacity: 0.96984
+            }
+
+            85% {
+                opacity: 0.0361
+            }
+
+            90% {
+                opacity: 0.24467
+            }
+
+            95% {
+                opacity: 0.08351
+            }
+
+            100% {
+                opacity: 0.54813
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            background: #383838;
+            color: #00dd00;
+            font-family: Courier;
+            height: 100%;
+            min-height: 1000px;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3 h4, h5, h6 {
+            font-weight: normal;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+            a:hover {
+                color: #c0392b;
+            }
+
+        p {
+            line-height: 100%;
+            margin: 0;
+        }
+
+        span {
+            animation: blink 1s infinite
+        }
+
+        ul {
+            list-style: none;
+        }
+
+            ul a:before,
+            p a:before {
+                color: #00dd00;
+                content: ' [ ';
+            }
+
+            ul a:after,
+            p a:after {
+                color: #00dd00;
+                content: ' ] ';
+            }
+
+        header.site {
+            margin: 0 0 40px 0;
+            text-transform: uppercase;
+        }
+
+        nav.site {
+            margin: 0 0 40px 0;
+            position: relative;
+            width: 100%;
+            z-index: 10;
+        }
+
+            nav.site ul {
+                padding: 0;
+            }
+
+                nav.site ul li {
+                    display: inline-block;
+                    padding: 0 10px;
+                    min-width: 250px;
+                    width: auto;
+                }
+
+        .overlay {
+            height: 1px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+        }
+
+            .overlay:before {
+                background: linear-gradient(#101010 50%, rgba(16, 16, 16, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.03));
+                background-size: 100% 3px, 6px 100%;
+                content: "";
+                display: block;
+                pointer-events: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 2;
+            }
+
+            .overlay:after {
+                animation: flicker 0.30s infinite;
+                background: rgba(16, 16, 16, 0.2);
+                content: "";
+                display: block;
+                pointer-events: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 2;
+            }
+
+        .col {
+            float: left;
+            padding: 0 20px;
+        }
+
+            .col.two {
+                width: auto;
+            }
+
+        .wrapper {
+            animation: scroll 5s 1;
+            margin: 0;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .content {
+            animation: scroll 3s 1;
+            overflow: hidden;
+            padding: 40px;
+            position: relative;
+            width: 95%;
+        }
+
+        #logo-v {
+            display: block;
+            height: auto;
+            margin: 0 auto;
+            width: 200px;
+        }
+
+        img.pip-hero {
+            display: block;
+            float: left;
+            height: auto;
+            margin: 5px 10px 5px 0;
+            width: 120px;
+        }
+
+        form {
+        }
+
+        label {
+            clear: left;
+            display: block;
+            float: left;
+            margin-right: 10px;
+            padding-top: 5px;
+        }
+
+        input[type=text],
+        textarea {
+            background: transparent;
+            color: #00dd00;
+            display: block;
+            float: left;
+            font-family: Courier;
+            position: relative;
+            z-index: 10
+        }
+
+        textarea {
+            margin-bottom: 20px overflow: auto;
+            resize: none;
+        }
+
+            input[type=text]:focus,
+            textarea:focus,
+            input[type=submit]:focus,
+            a.button:focus {
+                outline: 0;
+            }
+
+        input[type=submit],
+        a.button {
+            background: transparent;
+            border: 1px solid #00dd00;
+            clear: both;
+            color: #00dd00;
+            cursor: hand;
+            display: inline-block;
+            font-family: Courier;
+            font-size: 1em;
+            margin-bottom: 20px;
+            opacity: 0.25;
+            padding: 10px 100px;
+            position: relative;
+            text-decoration: none;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+
+            input[type=submit]:hover,
+            a.button:hover {
+                background: #00dd00;
+                color: #383838;
+                opacity: 0.8;
+            }
+
+        .expandingArea {
+            position: relative
+        }
+
+        .scanline {
+            animation: scroll 10s 5s infinite;
+            background: -moz-linear-gradient(top, rgba(0,221,0,0) 0%, rgba(0,221,0,1) 50%, rgba(0,221,0,0) 100%);
+            background: -webkit-linear-gradient(top, rgba(0,221,0,0) 0%,rgba(0,221,0,1) 50%,rgba(0,221,0,0) 100%);
+            background: linear-gradient(to bottom, rgba(0,221,0,0) 0%,rgba(0,221,0,1) 50%,rgba(0,221,0,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000dd00', endColorstr='#0000dd00',GradientType=0 );
+            display: block;
+            height: 20px;
+            opacity: 0.05;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -5%;
+            z-index: 2;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .clearfix {
+            overflow: auto;
+            zoom: 1;
+        }
+
+        .upper {
+            text-transform: uppercase;
+        }
+    </style>
+
+
+    <style>
+        body {
+            text-align: center;
+            max-width: 406px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center
+        }
+
+        @media(max-width:576px) {
+            body {
+                display: block
+            }
+        }
+
+        .top-logo {
+            display: none
+        }
+
+        @media(max-width:576px) {
+            .top-logo {
+                display: block;
+                margin: 0 auto;
+                margin-bottom: 20px;
+                max-height: 20px
+            }
+        }
+
+        @media(max-width:576px) {
+            .bottom-logo {
+                display: none
+            }
+        }
+
+        img {
+            max-height: 40px
+        }
+
+        .logos {
+            padding: 130px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        @media(max-width:576px) {
+            .logos {
+                padding: 0;
+                justify-content: center
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!--hidden controls to hold onto data, which can be changed
+        from type="hidden" to type="text" to allow you to debug
+        and test out your code in an easy way
+
+        <input type="hidden" id="oGrammar" />
+        to
+        <input type="text" id="oGrammar" />
+    -->
+    <input type="hidden" id="oTweet" />
+
+
+    <!--This is for the body of the page-->
+    <div style="text-align:center;max-width: 406px;align-content:center;font-size:smaller;">
+        <div>
+            <div style="max-width: 406px;">
+                <img src="Messagebanner.png" style="min-width: 406px; max-width: 406px;height: auto;min-height:90px;" />
+                <div style="font-weight:bolder;font-size:medium;height:55px;">We the people of the world have a message for those that ignore the war in Ukraine.</div>
+
+                <div id="typc" style="font-size: small; height: 65px; background-color: #220000;padding-top:10px;">
+                    <div id="typtext"></div><div id="typcurs"></div>
+                </div>
+                <br />
+                <div style="font-size:small;padding:0px 10px 10px 10px;">
+                    We give you a tool that allows you to send pregenerated tweets from your phones that tag randomly selected public figures.
+                    <br /><br />
+                    Each of us have a voice. Let it be heard.<br />
+                    Let people know the truth.<br />Let them know the power of the free world!
+                </div>
+            </div>
+
+            <!--This contains the controls used to display/capture input-->
+            <table border="0" style="border-collapse: collapse;width: 100%;">
+                <tbody>
+                    <tr>
+                        <td style="width: 25px;"></td>
+                        <td style="width: *; ">
+                            <button onclick="sendTweet();" value="Send Tweet" style="width: 300px; height: 40px; font-size: large;margin:10px 0px 10px 0px;">Send Tweet</button>
+                        </td>
+                        <td style="width: 25px;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="align-content:center;margin:0px 0px 60px 0px;">
+            <p></p>
+            <div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!--The script section is where the magic happens-->
+    <script>
+
+        //data objects
+        var oTweet;
+
+        //run this when the page is ready
+        $(document).ready(function () {
+            //fetchNumber();
+            //fetchEmails();
+        });
+
+        //JSON API URLs
+        var tweetAPI = "https://wearebadmofos.com/tweetAPI.php";
+                
+
+        async function sendTweet() {
+            fetch(tweetAPI)
+                .then(result => result.json())  //results are JSON
+                .then((output) => {             //results through output
+                    oTweet = output;              //put the output results of the API query into the object set aside for numbers
+                    $("#oTweet").val(JSON.stringify(output));        //set the value of the hidden control with the id="oEmail" to the JSON object's string representation
+                    console.log(oTweet.tweet);
+                    var tweet = JSON.stringify(oTweet.tweet[0]);//
+
+                    window.open(tweet.replace("\"", "").replace("\"", ""), "_blank");
+                }
+                ).catch(err => console.error('error:' + err));    //if an error happened, write the error to the console for debugging (F12 button/inspect tool in most browsers)
+        }
+
+
+
+        /************Fancy Text stuff - Credits: https://usefulangle.com/post/75/typing-effect-animation-javascript-css***************/
+        var _CONTENT = [
+            "The Ukrainian people are suffering and dying because of the shameful decision of a dictator to attack an independent Ukraine.",
+            "Many people remain silent or ignore the truth.",
+            "Their obsession with celebrity must be interupted.",
+            "Celebrities and government officials are dining in elegance while children die."
+        ];
+
+        var _PART = 0;
+        var _PART_INDEX = 0;
+        var _INTERVAL_VAL;
+        var _ELEMENT = document.getElementById("typtext");
+        var _CURSOR = document.getElementById("typcurs");
+
+        function Type() {
+            var text = _CONTENT[_PART].substring(0, _PART_INDEX + 1);
+            _ELEMENT.innerHTML = text;
+            _PART_INDEX++;
+            if (text === _CONTENT[_PART]) {
+                _CURSOR.style.display = 'none';
+
+                clearInterval(_INTERVAL_VAL);
+                setTimeout(function () {
+                    _INTERVAL_VAL = setInterval(Delete, 50);
+                }, 1000);
+            }
+        }
+
+        function Delete() {
+            var text = _CONTENT[_PART].substring(0, _PART_INDEX - 1);
+            _ELEMENT.innerHTML = text;
+            _PART_INDEX--;
+            if (text === '') {
+                clearInterval(_INTERVAL_VAL);
+                if (_PART == (_CONTENT.length - 1))
+                    _PART = 0;
+                else
+                    _PART++;
+
+                _PART_INDEX = 0;
+                setTimeout(function () {
+                    _CURSOR.style.display = 'inline-block';
+                    _INTERVAL_VAL = setInterval(Type, 80);
+                }, 1000);
+            }
+        }
+        _INTERVAL_VAL = setInterval(Type, 80);
+
+
+        //          Code for updating the counter
+
+        function randomIntFromInterval(min, max) { // min and max included
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+
+        var curr = null;
+        var upspeed = 1000;
+
+        //var ups = new XMLHttpRequest();
+        //ups.open('GET', 'upspeed-min.txt');
+        //ups.onreadystatechange = function() {
+        //    upspeed = ups.responseText;
+        //}
+        //ups.onerror = function() {
+        //    upspeed = 1000;
+        //}
+        //ups.send();
+
+        //var capi = new XMLHttpRequest();
+        //capi.open('GET', 'https://api.countapi.xyz/get/bwi/mailsentv1');
+        //capi.onreadystatechange = function() {
+        //    curr = JSON.parse(capi.responseText)["value"] * 1000 - randomIntFromInterval(0,1000);
+        //}
+        //capi.send();
+
+        function cuipd() {
+            // do whatever you like here
+            if (upspeed != null && curr != null) {
+                curr += randomIntFromInterval((upspeed / 600) * 0.5, (upspeed / 600) * 1.5);
+                document.getElementById("ctext").innerHTML = curr.toString();
+            }
+            //console.log(curr);
+            setTimeout(cuipd, 100);
+        }
+        cuipd();
+
+    </script>
+
+</body>
+</html>

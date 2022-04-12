@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 $servername = "";
 $username = "";
@@ -120,9 +120,9 @@ $random_keys=array_rand($c,3);
 $hashtags=$c[$random_keys[0]] . " " . $c[$random_keys[1]] . " " . $c[$random_keys[2]];
 
 
-
+//echo "<a href=\"" . "https://twitter.com/intent/tweet?text=" . urlencode($msg . " " . $tags . "\r\n" . $link . "\r\n\r\nPlease Retweet or visit //https://wearebadmofos.com/SampleTwitter.php\r\n" . $hashtags) . " \">Tweet</a>";
 echo "{\"tweet\":[";
-echo "\"" . "https://twitter.com/intent/tweet?text=" . urlencode($msg . " " . $link . " " . $tags . " " . $hashtags) . "\"";
+echo "\"" . "https://twitter.com/intent/tweet?text=" . urlencode($msg . " " . $tags . "\r\n" . $link . "\r\n\r\nPlease Retweet or visit https://wearebadmofos.com/SampleTwitter.php\r\n" . $hashtags) . "\"";
 
 echo "]}";
 ?>

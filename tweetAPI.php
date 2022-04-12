@@ -116,13 +116,31 @@ if ($result->num_rows > 0) {
 
 ////////////////////HASHTAGS//////////////////////////////////////////////////////////////////
 $c=array("#Anonymous","#Ukraine","#FightForUkraine","#FckPtn","#NoMoreWar","#EndAllWars","#OpRussia","#WeAreLegion","#StopPutinNow","#SlavaUkraini","#StopRussia");
-$random_keys=array_rand($c,3);
-$hashtags=$c[$random_keys[0]] . " " . $c[$random_keys[1]] . " " . $c[$random_keys[2]];
+$random_keys=array_rand($c,2);
+$hashtags=$c[$random_keys[0]] . " " . $c[$random_keys[1]];
 
 
-//echo "<a href=\"" . "https://twitter.com/intent/tweet?text=" . urlencode($msg . " " . $tags . "\r\n" . $link . "\r\n\r\nPlease Retweet or visit //https://wearebadmofos.com/SampleTwitter.php\r\n" . $hashtags) . " \">Tweet</a>";
+////////////////////JoinLink//////////////////////////////////////////////////////////////////
+$d=array("Tweet For Peace https://tinyurl.com/4fw4rha2", "@Squad303 gives you a tool to send messages from your phones directly to randomly selected Russians. https://1920.in", "Follow @Squad303");
+$joinlink=$d[array_rand($d)];
+
+
+
+////////////////////JoinMsg//////////////////////////////////////////////////////////////////
+$e=array("Please Retweet", "Join the fight", "Stand For Ukraine","Stop The War! Spread The Truth!","Stand For Peace","Fight The Kremlin","Stick it to Putin!");
+$joinmsg=$e[array_rand($e)];
+
+
+
+////////////////////return data///////////////////////////////////////////////////////////////////////////
 echo "{\"tweet\":[";
-echo "\"" . "https://twitter.com/intent/tweet?text=" . urlencode($msg . " " . $tags . "\r\n" . $link . "\r\n\r\nPlease Retweet or visit https://wearebadmofos.com/SampleTwitter.php\r\n" . $hashtags) . "\"";
+echo "\"" . "https://twitter.com/intent/tweet?text=" . urlencode($msg . " " . $tags . "\r\n" . $link . "\r\n\r\n" . $joinmsg . " " . $joinlink . "\r\n" . $hashtags) . "\",";
 
+echo "\"" . $msg . "\",";
+echo "\"" . $link. "\",";
+echo "\"" . $tags . "\",";
+echo "\"" . $hashtags . "\",";
+echo "\"" . $joinlink. "\",";
+echo "\"" . $joinmsg. "\"";
 echo "]}";
 ?>

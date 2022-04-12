@@ -134,7 +134,7 @@ $joinmsg=$e[array_rand($e)];
 
 ////////////////////return data///////////////////////////////////////////////////////////////////////////
 echo "{\"tweet\":[";
-echo "\"" . "https://twitter.com/intent/tweet?text=" . urlencode($msg . " " . $tags . "\r\n" . $link . "\r\n\r\n" . $joinmsg . " " . $joinlink . "\r\n" . $hashtags) . "\",";
+echo "\"" . "https://twitter.com/intent/tweet?text=" . urlencode($msg . " " . $tags . "\r\n" . $link . "\r\n\r\n" . $joinmsg . "-" . $joinlink . "\r\n" . $hashtags) . "\",";
 
 echo "\"" . $msg . "\",";
 echo "\"" . $link. "\",";
